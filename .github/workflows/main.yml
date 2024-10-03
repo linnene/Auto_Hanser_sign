@@ -5,25 +5,25 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 2 * * *'  # 每天 UTC 时间 02:00 运行，相当于北京时间 10:00
+    - cron: '20 21 * * *' 
 
 jobs:
   run-main:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if (Test-Path requirements.txt) { pip install -r requirements.txt }
+        if exist requirements.txt (
+          pip install -r requirements.txt
+        )
 
     - name: Install Google Chrome
       run: |
@@ -35,8 +35,8 @@ jobs:
       run: |
         $chromeVersion = (Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE").Content
         Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$chromeVersion/chromedriver_win32.zip" -OutFile "chromedriver.zip"
-        Expand-Archive chromedriver.zip -DestinationPath "./chromedriver-win64/chromedriver-win64"
-        $Env:PATH += ";$PWD\chromedriver-win64\chromedriver-win64"
+        Expand-Archive chromedriver.zip -DestinationPath "./chromedriver-win64/"
+        $Env:PATH += ";$PWD\chromedriver-win64"
 
     - name: Run main.py
       env:
