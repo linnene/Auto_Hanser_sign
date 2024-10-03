@@ -15,9 +15,7 @@ your_username = settings['Set']['NAME']
 your_password = settings['Set']['PASSWORD']
 Token = settings['Set']['PUSHPIUS-TOKEN']
 SecretKey = settings['Set']['SECRETKEY']  
-Driver_Path = settings['Set']['Driver_Path']
 
-chrome_driver_path = Driver_Path
 
 # 初始化 WebDriver
 options = webdriver.ChromeOptions()
@@ -27,7 +25,7 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--disable-gpu')
 
-driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
+driver = webdriver.Chrome(options=options)
 url = "https://2550505.com/" 
 driver.get(url)
 

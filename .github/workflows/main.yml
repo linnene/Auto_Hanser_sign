@@ -37,6 +37,16 @@ jobs:
         Expand-Archive chromedriver.zip -DestinationPath "./chromedriver-win64/"
         $Env:PATH += ";$PWD\chromedriver-win64"
 
+    - name: Check ChromeDriver Installation
+      run: |
+        if (-not (Test-Path "./chromedriver-win64/chromedriver.exe")) {
+          throw "ChromeDriver not found at expected location"
+        }
+        
+    - name: Set ChromeDriver Path
+      run: |
+          $Env:PATH += ";$PWD\chromedriver-win64"
+      
         
     - name: Run main.py
       env:
