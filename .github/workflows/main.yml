@@ -1,3 +1,22 @@
+# This GitHub Actions workflow is designed to run the main.py script whenever there is a push to the main branch.
+# 
+# Workflow Name: Run main.py
+# 
+# Triggers:
+# - on push to the main branch
+# 
+# Jobs:
+# - run-main: Executes the main job on a Windows environment.
+# 
+# Steps:
+# 1. Checkout the repository using actions/checkout@v3.
+# 2. Set up Python 3.11 using actions/setup-python@v4.
+# 3. Install dependencies listed in requirements.txt if it exists.
+# 4. Install Google Chrome silently.
+# 5. Download and install the latest ChromeDriver.
+# 6. Verify the ChromeDriver installation.
+# 7. Set the ChromeDriver path.
+# 8. Run the main.py script, using a secret SETTINGS_JSON for configuration.
 name: Run main.py
 
 on:
@@ -23,7 +42,7 @@ jobs:
         if (Test-Path requirements.txt) {
           pip install -r requirements.txt
         }
-          
+
       env:
         PYTHONIOENCODING: utf-8
 

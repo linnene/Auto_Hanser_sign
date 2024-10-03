@@ -1,3 +1,29 @@
+"""
+This script automates the login and daily sign-in process for a website using Selenium WebDriver.
+Modules:
+    - json: For reading configuration settings from a JSON file.
+    - selenium: For automating web browser interaction.
+    - pushplus_utils: For sending push notifications via PushPlus.
+    - sys, io: For handling standard output encoding.
+Functions:
+    - get_access_key: Retrieves an access key using a secret key and token.
+    - send_pushplus_message: Sends a push notification message via PushPlus.
+Configuration:
+    - Reads settings from 'setting.json' file, including username, password, PushPlus token, and secret key.
+Process:
+    1. Initializes WebDriver with specific options.
+    2. Navigates to the target URL.
+    3. Retrieves an access key using provided secret key and token.
+    4. Attempts to find and click the login button.
+    5. Enters username and password to log in.
+    6. If login is successful, attempts to find and click the sign-in button.
+    7. Sends push notifications for success or failure of login and sign-in processes.
+    8. Closes the browser.
+Exceptions:
+    - Handles TimeoutException if elements are not found within the specified time.
+    - Handles general exceptions during access key retrieval and sign-in process.
+"""
+
 import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
