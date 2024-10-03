@@ -1,7 +1,6 @@
 import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,7 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from pushplus_utils import get_access_key, send_pushplus_message
 
 # 读取配置文件
-with open('./settings.json', 'r', encoding='utf-8') as f:
+with open('./setting.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
 your_username = settings['Set']['NAME']
