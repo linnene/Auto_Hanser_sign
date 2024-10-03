@@ -37,6 +37,7 @@ jobs:
         Expand-Archive chromedriver.zip -DestinationPath "./chromedriver-win64/"
         $Env:PATH += ";$PWD\chromedriver-win64"
 
+        
     - name: Run main.py
       env:
         SETTINGS_JSON: ${{ secrets.SETTINGS_JSON }}
