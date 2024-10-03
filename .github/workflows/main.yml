@@ -1,0 +1,47 @@
+name: Run main.py
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 2 * * *'  # 每天 UTC 时间 02:00 运行，相当于北京时间 10:00
+
+jobs:
+  run-main:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if (Test-Path requirements.txt) { pip install -r requirements.txt }
+
+    - name: Install Google Chrome
+      run: |
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri "https://dl.google.com/chrome/install/latest/chrome_installer.exe" -OutFile "chrome_installer.exe"
+        Start-Process -FilePath "chrome_installer.exe" -ArgumentList "/silent /install" -NoNewWindow -Wait
+
+    - name: Install ChromeDriver
+      run: |
+        $chromeVersion = (Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE").Content
+        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$chromeVersion/chromedriver_win32.zip" -OutFile "chromedriver.zip"
+        Expand-Archive chromedriver.zip -DestinationPath "./chromedriver-win64/chromedriver-win64"
+        $Env:PATH += ";$PWD\chromedriver-win64\chromedriver-win64"
+
+    - name: Run main.py
+      env:
+        SETTINGS_JSON: ${{ secrets.SETTINGS_JSON }}
+      run: |
+        echo $env:SETTINGS_JSON > setting.json
+        python main.py
+        Remove-Item setting.json
