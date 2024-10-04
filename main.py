@@ -10,7 +10,6 @@ import io
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-# 读取配置文件
 with open('./setting.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
@@ -43,7 +42,6 @@ driver = webdriver.Chrome(options=options)
 url = "https://2550505.com/" 
 driver.get(url)
 
-# 获取 AccessKey
 if use_email:
     pass
 else:
@@ -56,14 +54,12 @@ else:
         exit(1)
 
 
-# 查找“登录”按钮
 try:
     login_button = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.XPATH, "//button[contains(@class, 'h-button') and contains(@class, 'h-button--small') and text()='登录']"))
     )
     print("Login button found, proceeding to login.")
 
-    # 找到“登录”按钮，执行登录操作
     login_button.click()
     print("Navigating to login page...")
 
