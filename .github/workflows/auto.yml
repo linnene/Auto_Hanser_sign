@@ -2,7 +2,8 @@ name: Run auto
 
 on:
   schedule:
-      - cron: '0 */12 * * *'      
+    - cron: "0 18 * * *"  # 每天北京时间凌晨2点运行
+      
     
 
 jobs:
