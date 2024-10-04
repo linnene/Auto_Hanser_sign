@@ -20,12 +20,9 @@
 name: Run main.py
 
 on:
-  push:
-    branches:
-      - main
   schedule:
       - cron: '1 16 * * *'  
-      - cron: '33 0 * * *'      
+      - cron: '40 0 * * *'      
     
 
 jobs:
