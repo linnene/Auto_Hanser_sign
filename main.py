@@ -38,7 +38,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 # 读取配置文件
-with open('./setting.json', 'r', encoding='utf-8') as f:
+with open('./settings.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
 your_username = settings['Set']['NAME']
@@ -116,7 +116,7 @@ try:
     send_pushplus_message(Token, access_key, "每日签到成功", "你今天已经成功签到。")
 except TimeoutException:
     print("Sign in button not found.")
-    send_pushplus_message(Token, access_key, "签到失败", "未找到签到按钮，请手动检查。")
+    send_pushplus_message(Token, access_key, "你今天已经签到过了", "等待明天吧")
 except Exception as e:
     print(f"签到过程中出现错误: {e}")
     send_pushplus_message(Token, access_key, "签到失败", f"签到失败，请检查错误: {e}")

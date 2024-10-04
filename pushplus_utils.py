@@ -5,7 +5,7 @@ import json
 
 
 def get_access_key(secret_key, token):
-    url = "https://sweet-dawn-4d33.20235094.workers.dev/"
+    url = "https://www.pushplus.plus/api/common/openApi/getAccessKey"
     headers = {
         "Content-Type": "application/json"
     }
@@ -27,7 +27,7 @@ def get_access_key(secret_key, token):
 
 
 def send_pushplus_message(token, access_key, title, content):
-    url = "http://www.pushplus.plus/send/https://plain-mud-b75d.20235094.workers.dev/"
+    url = "http://www.pushplus.plus/send/"
     headers = {
         "Content-Type": "application/json",
         "AccessKey": access_key  
