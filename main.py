@@ -11,7 +11,7 @@ import io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # 读取配置文件
-with open('./setting.json', 'r', encoding='utf-8') as f:
+with open('./settings.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
 your_username = settings['Set']['NAME']
@@ -44,13 +44,17 @@ url = "https://2550505.com/"
 driver.get(url)
 
 # 获取 AccessKey
-try:
-    access_key, expire_in = get_access_key(SecretKey, Token)  
-    print(f"获取 AccessKey 成功，有效期: {expire_in} 秒")
-except Exception as e:
-    print(f"获取 AccessKey 失败: {e}")
-    driver.quit()
-    exit(1)
+if use_email:
+    pass
+else:
+    try:
+        access_key, expire_in = get_access_key(SecretKey, Token)  
+        print(f"获取 AccessKey 成功，有效期: {expire_in} 秒")
+    except Exception as e:
+        print(f"获取 AccessKey 失败: {e}")
+        driver.quit()
+        exit(1)
+
 
 # 查找“登录”按钮
 try:
