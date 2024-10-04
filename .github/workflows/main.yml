@@ -5,12 +5,6 @@ on:
     branches:
       - main
       
-  schedule:
-    # 每天凌晨0:01 北京时间 -> 对应 UTC 16:01 前一天
-    - cron: '1 16 * * *'
-    # 每天早上9:00 北京时间 -> 对应 UTC 1:00
-    - cron: '0 1 * * *'
-
 jobs:
   run-main:
     runs-on: windows-latest
