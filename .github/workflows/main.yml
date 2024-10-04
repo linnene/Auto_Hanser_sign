@@ -1,6 +1,10 @@
 name: Run main.py
 
 on:
+  push:
+    branches:
+      - main
+      
   schedule:
     # 每天凌晨0:01 北京时间 -> 对应 UTC 16:01 前一天
     - cron: '1 16 * * *'
