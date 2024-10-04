@@ -17,7 +17,7 @@
 # 6. Verify the ChromeDriver installation.
 # 7. Set the ChromeDriver path.
 # 8. Run the main.py script, using a secret SETTINGS_JSON for configuration.
-name: Run main.py
+name: Run auto
 
 on:
   schedule:

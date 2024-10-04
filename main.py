@@ -11,7 +11,7 @@ import io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # 读取配置文件
-with open('./settings.json', 'r', encoding='utf-8') as f:
+with open('./setting.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
 your_username = settings['Set']['NAME']
