@@ -1,51 +1,35 @@
-"""
-This script automates the login and daily sign-in process for a website using Selenium WebDriver.
-Modules:
-    - json: For reading configuration settings from a JSON file.
-    - selenium: For automating web browser interaction.
-    - pushplus_utils: For sending push notifications via PushPlus.
-    - sys, io: For handling standard output encoding.
-Functions:
-    - get_access_key: Retrieves an access key using a secret key and token.
-    - send_pushplus_message: Sends a push notification message via PushPlus.
-Configuration:
-    - Reads settings from 'setting.json' file, including username, password, PushPlus token, and secret key.
-Process:
-    1. Initializes WebDriver with specific options.
-    2. Navigates to the target URL.
-    3. Retrieves an access key using provided secret key and token.
-    4. Attempts to find and click the login button.
-    5. Enters username and password to log in.
-    6. If login is successful, attempts to find and click the sign-in button.
-    7. Sends push notifications for success or failure of login and sign-in processes.
-    8. Closes the browser.
-Exceptions:
-    - Handles TimeoutException if elements are not found within the specified time.
-    - Handles general exceptions during access key retrieval and sign-in process.
-"""
-
 import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from pushplus_utils import get_access_key, send_pushplus_message
+from pushplus_utils import get_access_key, send_pushplus_message, send_email
 import sys
 import io
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-
 # 读取配置文件
-with open('./setting.json', 'r', encoding='utf-8') as f:
+with open('./settings.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
 your_username = settings['Set']['NAME']
 your_password = settings['Set']['PASSWORD']
 Token = settings['Set']['PUSHPIUS-TOKEN']
-SecretKey = settings['Set']['SECRETKEY']  
+SecretKey = settings['Set']['SECRETKEY']
+use_email = settings['Set']['USE_EMAIL']
+smtp_server = settings['Email']['SMTP_SERVER']
+smtp_port = settings['Email']['SMTP_PORT']
+smtp_user = settings['Email']['SMTP_USER']
+smtp_password = settings['Email']['SMTP_PASSWORD']
+to_email = settings['Email']['TO_EMAIL']
 
+def send_notification(subject, body):
+    if use_email:
+        send_email(smtp_server, smtp_port, smtp_user, smtp_password, to_email, subject, body)
+    else:
+        send_pushplus_message(Token, access_key, subject, body)
 
 # 初始化 WebDriver
 options = webdriver.ChromeOptions()
@@ -100,7 +84,7 @@ try:
         EC.presence_of_element_located((By.CLASS_NAME, "sign-btn"))
     )
     print("Logged in successfully.")
-    send_pushplus_message(Token, access_key, "登录成功", "你已经成功登录。")
+    send_notification("登录成功", "你已经成功登录。")
 
 except TimeoutException:
     print("Login button not found, assuming already logged in.")
@@ -113,13 +97,13 @@ try:
     )
     sign_in_button.click()
     print("Signed in successfully.")
-    send_pushplus_message(Token, access_key, "每日签到成功", "你今天已经成功签到。")
+    send_notification("每日签到成功", "你今天已经成功签到。")
 except TimeoutException:
     print("Sign in button not found.")
-    send_pushplus_message(Token, access_key, "你今天已经签到过了", "等待明天吧")
+    send_notification("你今天已经签到过了", "等待明天吧")
 except Exception as e:
     print(f"签到过程中出现错误: {e}")
-    send_pushplus_message(Token, access_key, "签到失败", f"签到失败，请检查错误: {e}")
+    send_notification("签到失败", f"签到失败，请检查错误: {e}")
 
 # 关闭浏览器
 driver.quit()
