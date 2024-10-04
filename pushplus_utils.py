@@ -4,7 +4,7 @@ import requests
 import json
 
 
-def get_access_key(secret_key, token):
+def get_access_key(secret_key, token,timeout = 120):
     url = "https://www.pushplus.plus/api/common/openApi/getAccessKey"
     headers = {
         "Content-Type": "application/json"
@@ -13,7 +13,7 @@ def get_access_key(secret_key, token):
         "token": token,
         "secretKey": secret_key
     }
-    response = requests.post(url, data=json.dumps(data), headers=headers)
+    response = requests.post(url, data=json.dumps(data), headers=headers,timeout=timeout)
     if response.status_code == 200:
         result = response.json()
         if result['code'] == 200 and 'data' in result:
@@ -38,7 +38,7 @@ def send_pushplus_message(token, access_key, title, content):
         "content": content,
         "template": "txt"
     }
-    response = requests.post(url, data=json.dumps(data), headers=headers)
+    response = requests.post(url, data=json.dumps(data), headers=headers,timeout=120)
     if response.status_code == 200:
         print("消息发送成功")
     else:
