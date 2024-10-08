@@ -20,15 +20,15 @@
 
 ## **点击项目顶部栏“setting”**
 
-![image.png](image.png)
+![image.png](./Pubilc/image.png)
 
 ## **点击“Secrets and variables”，“Action”**
 
-![image.png](image%201.png)
+![image.png](./Pubilc/image%201.png)
 
 ## **创建一个新的密钥，并命名为“SETTINGS_JSON”**
 
-![image.png](image%202.png)
+![image.png](./Pubilc/image%202.png)
 
 ## **在下列代码中，填写你的相关信息：**
 
@@ -55,7 +55,7 @@
 
 **默认为每天凌晨两点自动启动，你也可以通过手动触发来测试；**
 
-![image.png](image%203.png)
+![image.png](./Pubilc/image%203.png)
 
 ***再次，如果你在使用中遇到任何问题，请联系我***
 
