@@ -1,9 +1,8 @@
 {
-	"Set": {
-		"NAME": "bilibli",
-		"PASSWORD": "bilibli",
-        "PUSHPIUS-TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "SECRETKEY":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-		"Driver_Path":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-	}
+    "Set": {
+        "NAME": "XXX", 
+        "PASSWORD": "XXXX",	
+        "TO_EMAIL": "xx@XXX.com",
+        "USE_EMAIL": true
+    }                                 
 }

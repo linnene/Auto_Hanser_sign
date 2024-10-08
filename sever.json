@@ -1,0 +1,10 @@
+   {
+       "Sc" : {
+           "SMTP_SERVER": "smtp.gmail.com",
+           "SMTP_PORT": 587,
+           "SMTP_USER": "teadarkline@gmail.com",
+           "SMTP_PASSWORD": "jxkl lcew qsiv jyzg",
+           "PUSHPIUS-TOKEN": "c45d73818d8943639ae64a81a1a6f0f9",
+           "SECRETKEY": "ogIU756IivYysKYW8YIPc2VGhbRc"
+       }  
+   }

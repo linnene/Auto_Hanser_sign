@@ -15,14 +15,18 @@ with open('./setting.json', 'r', encoding='utf-8') as f:
 
 your_username = settings['Set']['NAME']
 your_password = settings['Set']['PASSWORD']
-Token = settings['Set']['PUSHPIUS-TOKEN']
-SecretKey = settings['Set']['SECRETKEY']
 use_email = settings['Set']['USE_EMAIL']
-smtp_server = settings['Email']['SMTP_SERVER']
-smtp_port = settings['Email']['SMTP_PORT']
-smtp_user = settings['Email']['SMTP_USER']
-smtp_password = settings['Email']['SMTP_PASSWORD']
-to_email = settings['Email']['TO_EMAIL']
+to_email = settings['Set']['TO_EMAIL']
+
+with open('./sever.json', 'r', encoding='utf-8') as f:
+    server = json.load(f)
+
+SecretKey = server['Sc']['SECRETKEY']
+Token = server['Sc']['PUSHPIUS-TOKEN']
+smtp_server = server['Sc']['SMTP_SERVER']
+smtp_port = server['Sc']['SMTP_PORT']
+smtp_user = server['Sc']['SMTP_USER']
+smtp_password = server['Sc']['SMTP_PASSWORD']
 
 def send_notification(subject, body):
     if use_email:
