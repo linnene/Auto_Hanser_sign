@@ -1,51 +1,62 @@
-# Auto_Hanser_sign User Guide
-
-## Introduction
-**Auto_Hanser_sign** is a Python-based automation script designed to automate the sign-in process for the 毛怪俱乐部 (Mao Guai Club). This guide will walk you through the setup and use of the project.
-
-## Prerequisites
-- ![Python](https://img.shields.io/badge/Python-3.x-blue) Python 3.x
-- ![Git](https://img.shields.io/badge/Git-2.x-orange) Git
-- ![PushPlus](https://img.shields.io/badge/PushPlus-API%20Token-green) PushPlus API token (for notifications)
-
-## Setup Instructions
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/linnene/Auto_Hanser_sign.git
-   cd Auto_Hanser_sign
-   ```
-
-2. **Install dependencies:**
-   Navigate to the project directory and install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configure settings:**
-   - Open the `setting.json` file.
-   - Input your required configurations, such as PushPlus token for notifications.
-
-4. **Run the script:**
-   To initiate the sign-in process, simply run:
-   ```bash
-   python main.py
-   ```
-
-## Notifications via PushPlus
-This script supports PushPlus notifications, allowing you to receive status updates after each sign-in attempt. Ensure that your PushPlus token is correctly set in the `setting.json` file.
-
-## Files and Structure
-- **`main.py`**: Core script that executes the sign-in process.
-- **`pushplus_utils.py`**: Handles PushPlus notifications.
-- **`requirements.txt`**: Lists required dependencies.
-- **`setting.json`**: Configuration file for user-specific settings.
-
-## License
-This project is licensed under the MIT License.
-
-For more detailed information, visit the repository: [Auto_Hanser_sign](https://github.com/linnene/Auto_Hanser_sign).
+# Auto_sign_mao
 
 ---
 
-This guide should help you quickly get started with the project!
+教程Notion原址：
+
+[https://linenene.notion.site/Auto_sign_mao-1195b4e28554804783a5da3950fc2f69?pvs=4](https://www.notion.so/Auto_sign_mao-1195b4e28554804783a5da3950fc2f69?pvs=21)
+
+# A. Fork这个项目；
+
+---
+
+1. **Fork这个项目（记得取消 only main选项）；**
+2. **在你fork的项目中开始之后的步骤；**
+3. **在你的项目中启用Aciton（自己搜索）；**
+
+# B. 创建一个”密钥”；
+
+---
+
+## **点击项目顶部栏“setting”**
+
+![image.png](image.png)
+
+## **点击“Secrets and variables”，“Action”**
+
+![image.png](image%201.png)
+
+## **创建一个新的密钥，并命名为“SETTINGS_JSON”**
+
+![image.png](image%202.png)
+
+## **在下列代码中，填写你的相关信息：**
+
+        **分别是，你的用户名，密码，你的邮箱（会使用这个邮箱通知你），以及是否使用邮箱通知（也可以选用PushPlus）默认就好。**
+
+**将这段代码填写进“SETTINGS_JSON”中保存即可**
+
+```json
+{
+    "Set": {
+        "NAME": "XXX", 
+        "PASSWORD": "XXXX",	
+        "TO_EMAIL": "xx@XXX.com",
+        "USE_EMAIL": true
+    }                                 
+}
+```
+
+# C. 第一次测试；
+
+---
+
+**tips：**
+
+**默认为每天凌晨两点自动启动，你也可以通过手动触发来测试；**
+
+![image.png](image%203.png)
+
+***再次，如果你在使用中遇到任何问题，请联系我***
+
+***qq：2691234891***
