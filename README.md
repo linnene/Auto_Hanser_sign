@@ -32,7 +32,7 @@
 
 ## **在下列代码中，填写你的相关信息：**
 
-        **分别是，你的用户名，密码，你的邮箱（会使用这个邮箱通知你），以及是否使用邮箱通知（也可以选用PushPlus）默认就好。**
+        **分别是，你的用户名，密码，你的邮箱（会使用这个邮箱通知你），以及是否使用邮箱通知（也可以选用PushPlus）默认就好,以及PushPlus-token，（当你选择使用PUSHPLUS推送时填写即可）**
 
 **将这段代码填写进“SETTINGS_JSON”中保存即可**
 
@@ -42,7 +42,8 @@
         "NAME": "XXX", 
         "PASSWORD": "XXXX",	
         "TO_EMAIL": "xx@XXX.com",
-        "USE_EMAIL": true
+        "USE_EMAIL": true,
+        "PUSHPIUS-TOKEN": "xxxxxx"
     }                                 
 }
 ```
