@@ -27,6 +27,7 @@ smtp_server = server['Sc']['SMTP_SERVER']
 smtp_port = server['Sc']['SMTP_PORT']
 smtp_user = server['Sc']['SMTP_USER']
 smtp_password = server['Sc']['SMTP_PASSWORD']
+Token_sever = server['Sc']['TOKEN_SEVER']
 
 def send_notification(subject, body):
     if use_email:
@@ -50,7 +51,7 @@ if use_email:
     pass
 else:
     try:
-        access_key, expire_in = get_access_key(SecretKey, Token)  
+        access_key, expire_in = get_access_key(SecretKey, Token_sever)  
         print(f"获取 AccessKey 成功，有效期: {expire_in} 秒")
     except Exception as e:
         print(f"获取 AccessKey 失败: {e}")
