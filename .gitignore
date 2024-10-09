@@ -5,3 +5,4 @@ UI.py
 .gitattributes
 
 Text_mailsend.py
+__pycache__/
