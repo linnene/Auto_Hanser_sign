@@ -17,12 +17,12 @@ your_username = settings['Set']['NAME']
 your_password = settings['Set']['PASSWORD']
 use_email = settings['Set']['USE_EMAIL']
 to_email = settings['Set']['TO_EMAIL']
+Token = settings['Set']['PUSHPIUS-TOKEN']
 
 with open('./sever.json', 'r', encoding='utf-8') as f:
     server = json.load(f)
 
 SecretKey = server['Sc']['SECRETKEY']
-Token = server['Sc']['PUSHPIUS-TOKEN']
 smtp_server = server['Sc']['SMTP_SERVER']
 smtp_port = server['Sc']['SMTP_PORT']
 smtp_user = server['Sc']['SMTP_USER']
