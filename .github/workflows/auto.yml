@@ -2,7 +2,8 @@ name: Run auto
 
 on:
   schedule:
-    - cron: "0 18 * * *"
+    - cron: "1 16 * * *"
+    - cron: "0 6 * * *"
   workflow_dispatch:   
     
 
