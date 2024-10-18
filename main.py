@@ -10,7 +10,7 @@ import io
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-with open('./setting.json', 'r', encoding='utf-8') as f:
+with open('./setting_text.json', 'r', encoding='utf-8') as f:
     settings = json.load(f)
 
 your_username = settings['Set']['NAME']
@@ -31,9 +31,16 @@ Token_sever = server['Sc']['TOKEN_SEVER']
 
 def send_notification(subject, body):
     if use_email:
-        send_email(smtp_server, smtp_port, smtp_user, smtp_password, to_email, subject, body)
+        try:
+            send_email(smtp_server, smtp_port, smtp_user, smtp_password, to_email, subject, body)
+        except Exception as e:
+            print(f"邮件发送失败: {e}")
     else:
-        send_pushplus_message(Token, access_key, subject, body)
+        try:
+            access_key, expire_in = get_access_key(SecretKey, Token_sever)  
+            send_pushplus_message(Token, access_key, subject, body)
+        except Exception as e:
+            print(f"PushPlus 消息发送失败: {e}")
 
 # 初始化 WebDriver
 options = webdriver.ChromeOptions()
@@ -46,18 +53,6 @@ options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(options=options)
 url = "https://2550505.com/" 
 driver.get(url)
-
-if use_email:
-    pass
-else:
-    try:
-        access_key, expire_in = get_access_key(SecretKey, Token_sever)  
-        print(f"获取 AccessKey 成功，有效期: {expire_in} 秒")
-    except Exception as e:
-        print(f"获取 AccessKey 失败: {e}")
-        driver.quit()
-        exit(1)
-
 
 try:
     login_button = WebDriverWait(driver, 10).until(
