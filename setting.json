@@ -1,0 +1,9 @@
+{
+    "Set": {
+        "NAME": "XXX", 
+        "PASSWORD": "XXXX",	
+        "TO_EMAIL": "xx@XXX.com",
+        "USE_EMAIL": true,
+        "PUSHPIUS-TOKEN": "xxxxxx"
+    }                                 
+}
